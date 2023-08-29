@@ -1,30 +1,27 @@
+
+
 import java.util.Scanner;
 
 public class Main {
-	
-	//직사격형에 1 채우고 셀까?
-	//int rec = (er - sr) * (ec - sc); //직사각형 면적
-	
-	public static int [][] board = new int [101][101];
-
 	public static void main(String[] args) {
-		int sum=0;
-		Scanner scanner = new Scanner (System.in);
+		Scanner sc = new Scanner (System.in);
 		
-		for(int i=0; i<4; i++) {
-			String [] sarr = scanner.nextLine().split(" ");
-			int sr = Integer.parseInt(sarr[0]);
-			int sc = Integer.parseInt(sarr[1]);
-			int er = Integer.parseInt(sarr[2]);
-			int ec = Integer.parseInt(sarr[3]);
+		int [][] board = new int [101][101];
+		
+		for(int t=0; t<4; t++) {
+			String [] str = sc.nextLine().split(" ");
+			int x1 = Integer.parseInt(str[0]);
+			int y1= Integer.parseInt(str[1]);
+			int x2 = Integer.parseInt(str[2]);
+			int y2 = Integer.parseInt(str[3]);
 			
-			for(int r=sr; r<er; r++) {
-				for(int c=sc; c<ec; c++) {
-					board[r][c]=1;
+			for(int r=x1; r<x2; r++) {
+				for(int c=y1; c<y2; c++) {
+					board[r][c] =1;
 				}
 			}
 		}
-			
+		int sum=0;
 		for(int r=1; r<100; r++) {
 			for(int c=1; c<100; c++) {
 				if(board[r][c]==1) {
