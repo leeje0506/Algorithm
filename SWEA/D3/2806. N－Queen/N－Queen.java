@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 public class Solution{
 
 	public static int T, N, answer;
-	public static boolean [][] visited;
+	//public static boolean [][] visited;
 	public static int [] check;
-	public static int[] dr = { -1, 0, 1, 0, 1, -1, 1, -1 };
-    public static int[] dc = { 0, 1, 0, -1, -1, -1, 1, 1 };
+	//public static int[] dr = { -1, 0, 1, 0, 1, -1, 1, -1 };
+    //public static int[] dc = { 0, 1, 0, -1, -1, -1, 1, 1 };
 	public static void main(String[] args)throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				
@@ -20,7 +20,7 @@ public class Solution{
 		for(int tc =1; tc<=T; tc++) {
 			N = Integer.parseInt(br.readLine());
 			
-			visited = new boolean [N][N];
+			//visited = new boolean [N][N];
 			check = new int [N];
 			answer =0;
 			
