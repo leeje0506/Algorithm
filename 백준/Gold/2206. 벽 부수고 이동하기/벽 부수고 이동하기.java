@@ -121,7 +121,7 @@ public class Main {
 							}
 						}else {
 							//벽 부수고 진행한 경우(중간에 벽을 만남)
-							if(checked[1][nr][nc]==true) {
+							if(checked[0][nr][nc]==true || checked[1][nr][nc]==true) {
 								continue;
 							}else {
 								checked[1][nr][nc] = true;
