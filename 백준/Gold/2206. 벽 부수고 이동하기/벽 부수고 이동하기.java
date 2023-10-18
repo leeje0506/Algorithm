@@ -65,12 +65,12 @@ public class Main {
 		bfs();
 		
 		if(finish == false) {
-			answer = -1;
+			sb.append(-1).append("\n");
 		}else {
-			answer = answer;
+			sb.append(answer).append("\n");
 		}
 		
-		System.out.println(answer);
+		System.out.println(sb);
 	}//main
 	
 	
