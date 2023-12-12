@@ -8,7 +8,7 @@ class Solution {
             }else if(order[i].contains("cafelatte")){
                 answer +=5000;
             }
-        }
+        } 
         return answer;
     }
 }
