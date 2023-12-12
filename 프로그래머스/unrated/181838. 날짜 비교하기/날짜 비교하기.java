@@ -12,7 +12,7 @@ class Solution {
                 if(date1[2]<date2[2]){
                     answer=1;
                 }
-            }
+            } 
         }
         
         
