@@ -8,7 +8,7 @@ class Solution {
             len = ((names.length/5) +1);
         }
         
-        String[] answer = new String [len];
+        String[] answer = new String [len]; 
         
         int idx=0;
         
