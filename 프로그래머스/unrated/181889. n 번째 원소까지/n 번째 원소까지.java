@@ -6,7 +6,7 @@ class Solution {
         for(int j=0; j<n; j++){
             answer[j] = num_list[j];
         }
-            
+             
         
         return answer;
     }
