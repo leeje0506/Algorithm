@@ -8,7 +8,7 @@ class Solution {
             sum += num_list[i];
             mul *= num_list[i];
         }
-        
+         
         if(num_list.length >= 11){
             answer = sum;
         }
