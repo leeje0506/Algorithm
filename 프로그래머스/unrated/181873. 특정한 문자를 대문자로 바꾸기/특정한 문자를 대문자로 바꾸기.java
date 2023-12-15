@@ -9,7 +9,7 @@ class Solution {
             str[i]=str[i].toUpperCase();
             }
             answer += str[i];
-        }
+        } 
         
         
         return answer;
