@@ -8,7 +8,7 @@ class Solution {
             int k = queries[n][2];
         
             
-            for(int i=s; i<=e; i++){
+            for(int i=s; i<=e; i++){ 
                 if(i%k==0){
                     arr[i]=arr[i]+1;
                 }  
