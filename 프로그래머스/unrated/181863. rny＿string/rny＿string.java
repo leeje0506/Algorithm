@@ -28,7 +28,7 @@ class Solution {
              answer += str[i];
         }
        
-     
+      
         return answer;
     }
 }
