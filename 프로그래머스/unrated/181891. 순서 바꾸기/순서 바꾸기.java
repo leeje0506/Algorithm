@@ -8,7 +8,7 @@ class Solution {
         //index는 앞서 증가한 값이 유지되고 있으므로, answer 배열에 연이어 원소가 채워짐
         for (int i = 0; i < n; i++) {
             answer[index++] = num_list[i];
-        }
+        } 
         return answer;
     }
-}
+}   
