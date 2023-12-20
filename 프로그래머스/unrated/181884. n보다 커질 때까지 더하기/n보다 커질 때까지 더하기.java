@@ -4,7 +4,7 @@ class Solution {
         
         for(int i=0; i<numbers.length; i++){
             answer += numbers[i];
-            if(answer>n){
+            if(answer>n){   
                 break;
             }
         }
