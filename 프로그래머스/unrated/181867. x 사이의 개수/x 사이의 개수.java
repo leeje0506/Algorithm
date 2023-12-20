@@ -9,6 +9,6 @@ class Solution {
             //answer의 i번째 원소 위치에 s의 i번째 원소의 길이만큼 할당
             answer[i] = s[i].length();
         }
-        return answer;
+        return answer; 
     }
 }
