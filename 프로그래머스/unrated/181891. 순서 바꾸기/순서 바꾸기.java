@@ -10,5 +10,5 @@ class Solution {
             answer[index++] = num_list[i];
         } 
         return answer;
-    }
+    } 
 }   
