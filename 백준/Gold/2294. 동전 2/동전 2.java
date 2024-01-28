@@ -30,22 +30,20 @@ public class Main {
 		}
 		dp[0]=0;
 
-		for(int i=1; i<k+1; i++) {
-			for(int j=0; j<n; j++) {
-				if(i>=cost[j]) {
-					dp[i] = Math.min(dp[i], dp[i-cost[j]] +1);
-				}
-				
-				
-			}
-		}
+//		for(int i=1; i<k+1; i++) {
+//			for(int j=0; j<n; j++) {
+//				if(i>=cost[j]) {
+//					dp[i] = Math.min(dp[i], dp[i-cost[j]] +1);
+//				}
+//			}
+//		}
 		
-//		for(int i=1; i<n; i++) {
-//            for(int j=cost[i]; j<k+1; j++) {
-//                dp[j] = Math.min(dp[j-cost[i]], dp[j-cost[i-1]] )+1;
-//                
-//            }
-//        }
+		for(int i=0; i<n; i++) {
+          for(int j=cost[i]; j<k+1; j++) {
+              dp[j] = Math.min(dp[j], dp[j-cost[i]]+1 );
+              
+          }
+      }
 		
 		if(dp[k] == 100001) {
 			System.out.println(-1);
