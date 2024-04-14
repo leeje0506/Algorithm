@@ -1,37 +1,26 @@
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Main {
-    // MOD 상수 정의 (문제에서 주어진 나머지 값)
-    private static final int MOD = 10007;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+public class Main { 
+    public static void main(String[] args) throws IOException { 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
+        int n = Integer.parseInt(br.readLine()); 
 
-        // 입력 받기
-        int n = Integer.parseInt(br.readLine());
-
-        // 타일링 방법의 수를 저장할 배열 선언
-        int[] dp = new int[n + 1];
-
-        // 초기값 설정
-        dp[0] = 1; // 직사각형이 없는 경우도 1가지 방법이 있음을 의미
-        dp[1] = 1;
-
-        // 점화식을 이용하여 dp 배열 채우기
-        for (int i = 2; i <= n; i++) {
-            dp[i] = (dp[i - 1] + dp[i - 2]) % MOD;
+        if (n == 1) { // n이 1일 경우
+            System.out.println(1); // 1 출력
+            return; // 프로그램 종료
         }
 
-        // 결과 출력
-        bw.write(String.valueOf(dp[n]));
-        bw.flush(); // 버퍼에 남아있는 데이터를 모두 출력
+        int[] dp = new int[n + 1]; // dp 배열 선언 및 초기화
+        dp[1] = 1; // 2x1 직사각형을 채우는 방법은 1가지
+        dp[2] = 2; // 2x2 직사각형을 채우는 방법은 2가지
 
-        br.close();
-        bw.close();
+        for (int i = 3; i <= n; i++) { // 3부터 n까지 반복
+            dp[i] = (dp[i - 1] + dp[i - 2]) % 10007; // 점화식에 따라 dp값 계산 및 10007로 나눈 나머지 저장
+        }
+
+        System.out.println(dp[n]); // 계산된 dp[n] 값을 출력
     }
 }
