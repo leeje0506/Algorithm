@@ -1,92 +1,61 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-
-//1은 이동 가능, 0은 이동 불가능(벽)
-//최소의 칸 수 출력. 
 public class Main {
-	
-	public static StringBuilder sb = new StringBuilder();
+    static int[][] maze;
+    static int[][] distance;
+    static int n, m;
+    static int[] dx = {-1, 1, 0, 0}; // 상하좌우 방향
+    static int[] dy = {0, 0, -1, 1};
 
-	public static int N,M,V,s,e;
-	public static int [][] miro;
-	public static boolean [][] visited;
-	public static Queue<Node> que = new LinkedList<>();
-	public static int [] dr = {-1,1,0,0};
-	public static int [] dc = {0,0,1,-1};
-	public static int cnt=0;
-	
-   
-    public static class Node{
-    	int s;
-    	int e;
-
-		public Node(int s, int e) {
-			this.s = s;
-			this.e = e;
-		}
-    }//Node
-    
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken()); // 세로 크기
+        m = Integer.parseInt(st.nextToken()); // 가로 크기
         
-        N = Integer.parseInt(st.nextToken()); //정점의 개수
-        M = Integer.parseInt(st.nextToken()); //간선의 개수
+        maze = new int[n][m];
+        distance = new int[n][m]; // 각 칸까지의 최소 거리 저장
         
-        miro = new int[N][M];
-        visited = new boolean [N][M];
-     
-        for(int r=0; r<N; r++) {
-        	String str = br.readLine();
-        	for(int c=0; c<M; c++) {
-        		miro[r][c] = str.charAt(c)-'0';
-        		visited[r][c] = false;
-        	}
+        // 미로 입력
+        for (int i = 0; i < n; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < m; j++) {
+                maze[i][j] = line.charAt(j) - '0';
+            }
         }
         
-        
-        bfs(0,0);
-       
-        System.out.println(miro[N-1][M-1]);
+        System.out.println(bfs(0, 0)); // (0, 0)에서 BFS 시작
+    }
 
-    }//main
-    
+    public static int bfs(int x, int y) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[] {x, y});
+        distance[x][y] = 1; // 시작 위치의 칸 수는 1로 설정
 
-    
-    public static void bfs(int s, int e) {
-    	que.add(new Node(s,e));
-    	visited[s][e] = true;
-    	
-    	while(!que.isEmpty()) {
-    		Node node = que.poll();
-    		
-    		for(int d=0; d<4; d++) {
-        		int nr = node.s +dr[d];
-        		int nc = node.e + dc[d];
-        		//범위를 벗어나지 않고
-        		if(nr>=0 && nc>=0 && nr<N && nc<M) {
-        			//방문하지 않았고, 이동이 가능한 곳
-        			if(visited[nr][nc]==false && miro[nr][nc]==1 ) {
-        				
-        				//다음 탐색 지점 큐에 추가
-        				que.add(new Node(nr,nc));
-        				
-        				miro[nr][nc] = miro[node.s][node.e] +1;
-        				
-        				//다음 탐색 지점 탐색처리
-        				visited[nr][nc] = true;
-        				
-        			}
-        		}
-        	}
-    	}
-    	
-    }//bfs
-    
-}//class
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int curX = current[0];
+            int curY = current[1];
+
+            // 상하좌우 탐색
+            for (int i = 0; i < 4; i++) {
+                int nx = curX + dx[i];
+                int ny = curY + dy[i];
+
+                // 미로 범위 내에 있으며, 이동할 수 있는 칸이고, 방문하지 않은 칸이면
+                if (nx >= 0 && ny >= 0 && nx < n && ny < m && maze[nx][ny] == 1 && distance[nx][ny] == 0) {
+                    distance[nx][ny] = distance[curX][curY] + 1; // 거리 갱신
+                    queue.add(new int[] {nx, ny});
+                }
+            }
+        }
+
+        // 목적지 (n-1, m-1)까지의 거리 반환
+        return distance[n-1][m-1];
+    }
+}
